@@ -134,3 +134,6 @@ config/hue.config.json.test
 
 # Exclude Font Awesome
 setup/assets/fontawesome/
+
+# macOS FS Garbage
+.DS_Store
