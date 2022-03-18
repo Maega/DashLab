@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'"> -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700|Source+Code+Pro">
+    <link rel="stylesheet" type="text/css" href="assets/fontawesome/css/all.min.css">
+    <link href="./styles.css" rel="stylesheet">
+    <title>DashLab Setup</title>
+</head>
+
+<body>
+    
+    <!-- Root Container -->
+    <div id="container">
+
+        <div class="window">
+            <div class="logo">
+                <img src="logo.png" alt="DashLab Logo">
+            </div>
+            <p>This wizard will guide you through the setup process. Once you're ready, click the button below, and we'll get you up and running in no time.</p>
+            <a class="button-next" onclick="windowMan.next()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"></path>
+                </svg>
+            </a>
+        </div>
+
+        <div class="window is-hidden" style="padding: 70px 150px">
+            
+            <h1 class="title">License agreement</h1>
+
+            <p>Before you proceed with setup, please read the following license agreement. Don't worry, there's no legal jargon in here.</p>
+
+            <div class="document">
+                <h3>Software updates</h3>
+                <p>This software is sold as-is, with no guarantees for new feature updates. The developer does guarantee bug-fix updates to address any failing or broken features while you are within an active support period.</p>
+                <p>Updates are delivered to you over the air. The script comes with an optional automatic update system that can install updates for you. Alternatively, you may download an archive of each update's modified files through the admin panel.</p>
+                <h3>Data collection</h3>
+                <p>The developer of the script may, depending on your configuration, collect data from your application. This data is limited to:</p>
+                <ul>
+                    <li>Details about errors that occur in the script.</li>
+                    <li>Statistics on how often certain features and tools are used.</li>
+                    <li>Basic server information, such as your PHP version and extensions.</li>
+                </ul>
+                <p>You will be given a chance to review these settings in the installer. After installing, you can also change these settings from the admin panel.</p>
+                <p>We respect your privacy. The data we collect is used only to improve our software. For instance, we use telemetry to determine which features are used most often, and focus our development on improving those features first.</p>
+            </div>
+
+            <div class="actions">
+                <a class="button" onclick="windowMan.next(); setTimeout(windowMan.next, 2000);">Accept</a>
+                <a class="button decline" onclick="windowMan.back()">Decline</a>
+            </div>
+
+        </div>
+
+        <div class="window is-hidden">
+
+            <h1 class="title">Checking your server</h1>
+            
+            <p>Please wait while we make sure your server is compatible.</p>
+            
+            <svg viewBox="0 0 50 50" class="spinner">
+                <circle cx="25" cy="25" r="20" fill="none" stroke-width="5" class="path"></circle>
+            </svg>
+
+        </div>
+
+        <div class="window is-hidden" style="padding: 70px 150px">
+
+            <h1 class="title">Connect to the internet</h1>
+
+            <p>It's time to connect to the internet. Please select how you would like to connect, or you can skip this step for now.</p>
+
+            <div class="columns">
+                
+                <div class="col">
+                    <i class="fad fa-ethernet fa-2x"></i>
+                    <strong>Wired connection</strong>
+                    <p>Connect your DashLab to the internet via the wired ethernet port on the device.</p>
+                    <a class="button-next is-small" onclick="windowMan.next()">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"></path>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="col">
+                    <i class="fad fa-wifi fa-2x"></i>
+                    <strong>Wireless connection</strong>
+                    <p>Connect your DashLab to the internet wirelessly via the onboard WiFi.</p>
+                    <a class="button-next is-small" onclick="windowMan.next(); wifiScan()">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"></path>
+                        </svg>
+                    </a>
+                </div>
+
+            </div>
+
+            <a class="button decline">Skip this step</a>
+
+        </div>
+
+        <div class="window is-hidden">
+            <h1 class="title">Connect to WiFi</h1>
+
+            <div class="inline-spinner" id="wifi-scan-status">
+                <span>Scanning</span>
+                <svg viewBox="0 0 50 50" class="spinner">
+                    <circle cx="25" cy="25" r="20" fill="none" stroke-width="5" class="path"></circle>
+                </svg>
+            </div>
+
+            <p>Select a WiFi network to connect to:</p>
+            
+            <ul class="select" id="wifi-list"></ul>
+
+            <a class="button decline" onclick="windowMan.back()">Go Back</a>
+
+        </div>
+
+    </div>
+
+    <!-- Import Renderer Process -->
+    <script src="./renderer.js"></script>
+</body>
+
+</html>

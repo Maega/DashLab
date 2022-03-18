@@ -1,0 +1,33 @@
+{
+    "name": "dashlab",
+    "version": "0.9.0",
+    "description": "DashLab Software",
+    "main": "main.js",
+    "scripts": {
+        "setup.start": "export DISPLAY=:0 && electron --no-sandbox --ignore-gpu-blacklist --enable-gpu-rasterization --enable-native-gpu-memory-buffers --force-device-scale-factor=1.0 ./setup/main.js",
+        "setup.debug": "export DISPLAY=:0 && electron --inspect --remote-debugging-port=9223 --no-sandbox --ignore-gpu-blacklist --enable-gpu-rasterization --enable-native-gpu-memory-buffers --force-device-scale-factor=1.0 ./setup/main.js",
+        "cli.start": "node ./cli/cli.js",
+        "cli.debug": "node --inspect ./cli/cli.js",
+        "driverDebug": "export DISPLAY=:0 && electron --inspect --no-sandbox ./driverDebug.js"
+    },
+    "devDependencies": {
+        "electron": "^16.0.2"
+    },
+    "dependencies": {
+        "@electron/remote": "^2.0.1",
+        "axios": "^0.24.0",
+        "chalk": "^4.1.2",
+        "chalk-pipe": "^5.1.1",
+        "dotenv": "^11.0.0",
+        "fast-xml-parser": "^4.0.0-beta.0",
+        "figures": "^4.0.0",
+        "fs-extra": "^10.0.0",
+        "inquirer": "^8.2.0",
+        "jquery": "^3.6.0",
+        "node-cmd": "^5.0.0",
+        "node-hue-api": "^5.0.0-beta.10",
+        "rpi-wifi-connection": "^1.0.17",
+        "sweetalert2": "^11.3.4",
+        "systeminformation": "^5.9.16"
+    }
+}

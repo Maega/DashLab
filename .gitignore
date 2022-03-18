@@ -125,3 +125,12 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Trashes
+.Trash-1000/
+
+# Config
+config/hue.config.json.test
+
+# Exclude Font Awesome
+setup/assets/fontawesome/

@@ -1,0 +1,351 @@
+html {
+    cursor: none;
+}
+
+.is-hidden {
+    display: none !important;
+}
+
+#container {
+    font-family: RobotoDraft,Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 34px;
+    line-height: 1.7;
+    color: #6c6f81;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+    overflow-y: hidden;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background: linear-gradient(-45deg,#ee7752,#e73c7e,#23a6d5,#23d5ab);
+    background-size: 400% 400%;
+    animation: change 10s ease-in-out infinite;
+
+    /* transform: translate3d(0,0,0);
+    perspective: 1000; 
+    backface-visibility: hidden; */
+}
+
+@keyframes change {
+    0% {
+        background-position: 0 50%
+    }
+
+    50% {
+        background-position: 100% 50%
+    }
+
+    to {
+        background-position: 0 50%
+    }
+}
+
+.window {
+    flex: 1 1 1500px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,.1);
+    max-width: 1500px;
+    max-height: 100%;
+    overflow-y: auto;
+    padding: 170px 150px;
+    box-sizing: border-box;
+    animation: slideInWindow .2s ease-out 0s 1;
+    text-align: center;
+
+    /* transform: translate3d(0,0,0);
+    perspective: 1000; 
+    backface-visibility: hidden; */
+}
+
+.logo {
+    margin-bottom: 80px;
+}
+
+.logo img {
+    width: 624px;
+}
+
+.actions {
+    margin-top: 70px;
+}
+
+a.button {
+    display: inline-block;
+    position: relative;
+    user-select: none;
+    cursor: pointer;
+    line-height: 76px;
+    border-radius: 6px;
+    font-size: 28px;
+    font-weight: 500;
+    color: #fff;
+    padding: 0 36px;
+    margin: 0 12px;
+    background-color: #2285e2;
+}
+
+a.button:hover {
+    background-color: #3295f1;
+}
+
+a.button.decline {
+    background-color: #666;
+}
+
+a.button.decline:hover {
+    background-color: #777;
+}
+
+a.button.is-loading {
+    outline: none;
+    cursor: default;
+    background-color: #aaa;
+    padding: 0 36px;
+    line-height: 76px;
+    background-image: none;
+    color: transparent;
+    pointer-events: none;
+}
+
+a.button.is-loading::before {
+    content: '';
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    top: calc(50% - 24px);
+    left: calc(50% - 24px);
+    border-radius: 100px;
+    border: 6px solid white;
+    border-top-color: transparent;
+    animation: button-spinner 2s linear infinite;
+}
+
+@keyframes button-spinner {
+    0% {
+        animation-timing-function: cubic-bezier(0.5856,0.0703,0.4143,0.9297);
+        transform: rotate(0)
+    }
+
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
+a.button-next {
+    display: flex;
+    width: 96px;
+    height: 96px;
+    border-radius: 96px;
+    background-color: #2196f3;
+    margin: 80px auto 0;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color .2s;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
+}
+
+a.button-next.is-small {
+    width: 80px;
+    height: 80px;
+    border-radius: 80px;
+    margin: 40px auto 0;
+}
+
+a.button-next:hover {
+    background-color: #1580d8;
+}
+
+a.button-next svg {
+    width: 48px;
+    height: 48px;
+    align-self: center;
+    justify-self: center;
+    margin: 0 auto;
+}
+
+a.button-next svg path {
+    fill: #fff;
+}
+
+@keyframes slideInWindow {
+    0% {
+        transform: translateY(-20%)
+    }
+
+    to {
+        transform: translateY(0)
+    }
+}
+
+.spinner {
+    animation: rotate 2s linear infinite;
+    z-index: 2;
+    width: 72px;
+    height: 72px;
+}
+
+.spinner .path {
+    stroke: #fff;
+    stroke-linecap: round;
+    animation: dash 1.5s ease-in-out infinite;
+}
+
+svg.spinner {
+    margin-top: 80px;
+    width: 72px;
+    height: 72px;
+}
+
+svg.spinner circle.path {
+    stroke: #777;
+}
+
+div.inline-spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.inline-spinner > span {
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+div.inline-spinner > svg.spinner {
+    margin-top: 0;
+    width: 45px;
+    height: 45px;
+}
+
+@keyframes rotate {
+    to {
+        transform: rotate(1turn)
+    }
+}
+
+@keyframes dash {
+    0% {
+        stroke-dasharray: 1,150;
+        stroke-dashoffset: 0
+    }
+
+    50% {
+        stroke-dasharray: 90,150;
+        stroke-dashoffset: -35
+    }
+
+    to {
+        stroke-dasharray: 90,150;
+        stroke-dashoffset: -124
+    }
+}
+
+h1.title {
+    font-size: 52px;
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+    color: #273747;
+}
+
+.document {
+    text-align: left;
+    box-shadow: 0 0 8px rgba(0,0,0,.12);
+    border-radius: 6px;
+    max-height: 470px;
+    overflow-y: scroll;
+    box-sizing: border-box;
+    padding: 60px;
+    margin: 80px 0 0;
+    font-size: 28px;
+    line-height: 1.6;
+    color: #666;
+}
+
+.document p {
+    margin: 0 0 24px;
+}
+
+.document p:last-child {
+    margin-bottom: 0;
+}
+
+.document h3 {
+    font-size: 30px;
+    font-weight: 500;
+    margin: 40px 0 24px;
+    color: #333;
+}
+
+.document h3:first-child {
+    margin-top: 0
+}
+
+.columns {
+    margin: 100px 0;
+    display: flex
+}
+
+.columns .col {
+    padding: 0 20px;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.columns .col:first-child {
+    padding-left: 0
+}
+
+.columns .col:last-child {
+    padding-right: 0
+}
+
+.columns .col strong {
+    display: block;
+    font-size: 32px;
+    font-weight: 500;
+    color: #444;
+    margin: 0 0 20px
+}
+
+.columns .col p {
+    font-size: 30px;
+    color: #666;
+    margin: 0
+}
+
+/* Scale up Sweetalert */
+.swal2-container > .swal2-modal {
+    transform: scale(1.5);
+}
+
+/* Lists - eg: Connect to WiFi */
+ul.select {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul.select li {
+    margin: 20px auto;
+    padding: 10px 40px;
+    text-align: left;
+    border-radius: 10px;
+    max-width: 700px;
+    background: rgb(197 197 197 / 50%);
+}
+
+ul.select li > i {
+    margin: 0 10px;
+}
