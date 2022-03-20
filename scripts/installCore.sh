@@ -9,4 +9,3 @@ chmod 774 /opt/dashlab
 
 cd /opt/dashlab
 
-

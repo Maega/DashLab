@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# This script will configure a user account (intended for the dashlab account) to automatically start xorg and add /usr/sbin to PATH on login
+
 # Check if running as root user
 if [ "$EUID" -ne 0 ]
   then echo "This script must be run as root!"
