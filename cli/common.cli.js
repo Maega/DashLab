@@ -7,6 +7,7 @@ const msg = {
     //error: chalk.bgRed.hex('#cccccc'),
     error: chalk.bold.red,
     warn: chalk.bold.yellow,
+    success: chalk.bold.green,
     brand: chalk.bold.hex('#1c83e2'),
     purple: chalk.bold.hex('#7f00ff')
 }
@@ -24,6 +25,7 @@ exports.printLogo = function(text) {
     console.log('                                        ');
     console.log(msg.brand('            ________________             '));
     console.log(msg.brand('           |__    ____    __|             '));
+    console.log(msg.brand('              |  |    |  |               '));
     console.log(msg.brand('              |  |    |  |               '));
     console.log(msg.brand('              |  |    |  |               '));
     console.log(msg.brand('              |  |    |  |             '));
