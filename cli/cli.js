@@ -1,9 +1,11 @@
-const {msg, printLogo} = require('./common');
+const {msg, printLogo} = require('./common.cli');
 const inquirer = require('inquirer');
 const info = require('systeminformation');
-const {runScript} = require('../common'); // Global Common Import
-
-//const bench = require('./bench');
+const {runScript, shellExec} = require('../common'); // Global Common Import
+const installerCLI = require('./installer.cli');
+const wifiCLI = require('./wifi.cli');
+const backupCLI = require('./backup.cli');
+const activationCLI = require('./activation.cli');
 
 async function main(getSysInfo = true) {
 
@@ -16,22 +18,39 @@ async function main(getSysInfo = true) {
         name: 'do',
         message: 'What would you like to do?',
         choices: [
+            {name: 'Manage Apps', value: 'manageapps'},
             {name: 'Edit WiFi Settings', value: 'wifi'},
             {name: 'Change Unix Password', value: 'passwd'},
             {name: 'Update System & Apps', value: 'update'},
+            {name: 'Backup & Restore', value: 'backup'},
+            {name: 'System Activation', value: 'activation'},
             {name: 'Reset All Settings', value: 'reset'}
         ]
     });
 
     switch(action.do) {
+        case 'manageapps':
+            await installerCLI.menu();
+            break;
         case 'wifi':
-            //await bench.start();
+            await wifiCLI.menu();
             break;
         case 'passwd':
             // change unix password
+            await shellExec('sudo', ['./scripts/changeUnixPass.sh', 'dashlab']);
             break;
         case 'update':
             // perform all updates (apt, dietpi, etc..)
+            await shellExec('sudo', ['/boot/dietpi/dietpi-update', '1']);
+            await shellExec('sudo', ['./scripts/updateApt.sh']);
+            break;
+        case 'backup':
+            // launch backup menu
+            await backupCLI.menu();
+            break;
+        case 'activation':
+            // launch activation menu
+            await activationCLI.menu();
             break;
         case 'reset':
             // reset all settings
