@@ -14,11 +14,13 @@ exports.config = {
 }
 
 // Runs a script from the scripts directory and parses its JSON stdout
-exports.runScript = async function(scriptName) {
+exports.runScript = async function(scriptName, interactive = false) {
 
     const result = await new Promise(async function(resolve, reject) {
         //const escapedScriptName = scriptName.replace(/[^a-z\d]/g, '\\$&');
-        const script = spawn("bash", [`./scripts/${scriptName}.sh`]);
+        const script = interactive
+            ? spawn("bash", [`./scripts/${scriptName}.sh`], { stdio: 'inherit' })
+            : spawn("bash", [`./scripts/${scriptName}.sh`]);
         script.stdout.on("data", data => resolve(data));
         script.stderr.on("data", data => console.error(`Script "${scriptName}" wrote to stderr: ${data}`));
         script.on('error', (error) => reject(error));
@@ -27,6 +29,26 @@ exports.runScript = async function(scriptName) {
 
     const jsonResult = JSON.parse(result);
     return jsonResult;
+
+}
+
+// Executes a shell command interactively, does not parse output
+exports.shellExec = async function(shellCmd, shellArgs = []) {
+
+    const result = await new Promise(async function(resolve, reject) {
+
+        const script = spawn(shellCmd, shellArgs, { stdio: 'inherit' });
+
+        script.on('close', (code) => {
+            console.log('Shell process ended with exit code ', code);
+            resolve(code);
+        });
+
+    });
+
+    if (result !== 0) console.error('Shell process exited with an error code!!');
+
+    return result;
 
 }
 
