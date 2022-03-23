@@ -8,6 +8,10 @@
         "setup.debug": "export DISPLAY=:0 && electron --inspect --remote-debugging-port=9223 --no-sandbox --ignore-gpu-blacklist --enable-gpu-rasterization --enable-native-gpu-memory-buffers --force-device-scale-factor=1.0 ./setup/main.js",
         "cli.start": "node ./cli/cli.js",
         "cli.debug": "node --inspect ./cli/cli.js",
+        "web.start": "node ./web/server.js",
+        "web.debug": "node --inspect ./web/server.js",
+        "api.start": "node ./api/api.js",
+        "api.debug": "node --inspect ./api/api.js",
         "driverDebug": "export DISPLAY=:0 && electron --inspect --no-sandbox ./driverDebug.js"
     },
     "devDependencies": {
