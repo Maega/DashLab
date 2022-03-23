@@ -16,7 +16,7 @@ const listApps = async function() {
     }
 
     const result = await new Promise(async function(resolve, reject) {
-        const script = spawn('sudo', ['/boot/dietpi/dietpi-software', 'list']);
+        const script = spawn('sudo', ['/opt/dashlab/scripts/installApp.sh', 'list']);
         script.stdout.setEncoding('utf8');
 
         var result = '';
