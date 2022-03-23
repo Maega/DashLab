@@ -77,6 +77,9 @@ async function getSystemInfo() {
     
     const sysInfo = {};
 
+    console.log('Getting System Info...')
+    sysInfo.system = await info.system();
+
     console.log('Getting System UUID...')
     sysInfo.uuid = await info.uuid();
 
@@ -99,12 +102,13 @@ async function getSystemInfo() {
     printLogo();
 
     console.log(msg.info('Operating System: ') + `${sysInfo.os.logofile.charAt(0).toUpperCase() + sysInfo.os.logofile.slice(1)} ${sysInfo.os.release} "${sysInfo.os.codename}" (Linux ${sysInfo.os.kernel})`);
-    console.log(msg.info('Hardware MLB: ') + `${sysInfo.mobo.model} (${sysInfo.ram.totalGB}GB RAM)`);
+    console.log(msg.info('Hardware MLB: ') + `${sysInfo.mobo.model} (${sysInfo.ram.totalGB}GB RAM) (rev: ${sysInfo.system.raspberry})`);
     console.log(msg.info('Processor: ') + `${sysInfo.cpu.vendor} ${sysInfo.cpu.brand} (${sysInfo.cpu.physicalCores} Cores)`);
     console.log(msg.info('CPU Status: ') + `${piStats.cpu.freqGhz}GHz @ ${piStats.cpu.temp}C`);
     console.log(msg.info('Memory: ') + `${piStats.ram.available}MB/${piStats.ram.total}MB Available (${piStats.ram.used}MB Used)`);
     console.log(msg.info('Active Governor: ') + `${piStats.cpu.governor}`);
     console.log(msg.info('System UUID: ') + sysInfo.uuid.hardware);
+    console.log(msg.info('Serial Number: ') + sysInfo.system.serial);
 
     // Check if frequency capped
     if (piStats.power.frequencyCapped) console.log(msg.warn('\nWARNING: DashLab\'s clock speed is currently capped!!'));
