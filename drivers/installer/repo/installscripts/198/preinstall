@@ -1,0 +1,5 @@
+#!/bin/bash
+echo "Patching Install Script..."
+sed -i "s/Setting up File Browser login user 'dietpi'/Setting up File Browser login user \'dashlab\'/g" /boot/dietpi/dietpi-software
+sed -i "s/G_EXEC \/opt\/filebrowser\/filebrowser users add dietpi/G_EXEC \/opt\/filebrowser\/filebrowser users add dashlab/g" /boot/dietpi/dietpi-software
+exit 0
