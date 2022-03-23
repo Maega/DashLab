@@ -75,12 +75,29 @@ exports.listNotInstalled = async function() {
 }
 
 exports.install = async function(appId) {
-    await shellExec('sudo', ['/boot/dietpi/dietpi-software', 'install', appId])
+
+    // Run preinstall script if present
+    const preinstall = `/opt/dashlab/drivers/installer/repo/installscripts/${appId}/preinstall`;
+    if (await fs.pathExists(preinstall)) await shellExec('sudo', [preinstall]);
+
+    // Run installation
+    await shellExec('sudo', ['/opt/dashlab/scripts/installApp.sh', 'install', appId]);
+
+    // Run postinstall script if present
+    const postinstall = `/opt/dashlab/drivers/installer/repo/installscripts/${appId}/postinstall`;
+    if (await fs.pathExists(postinstall)) await shellExec('sudo', [postinstall]);
+
+    // Refresh app list
+    await initApps();
+    
 }
 
 exports.uninstall = async function(appId) {
-    await shellExec('sudo', ['/boot/dietpi/dietpi-software', 'uninstall', appId])
+    await shellExec('sudo', ['/opt/dashlab/scripts/installApp.sh', 'uninstall', appId]);
+    await initApps();
 }
+
+initApps();
 
 // Lists only currently installed DietPi optimised software - OLD
 /* exports.listInstalled = async function() {
