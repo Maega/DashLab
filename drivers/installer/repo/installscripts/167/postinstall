@@ -1,0 +1,6 @@
+#!/bin/bash
+echo "DashLab is setting up the Spotify Connect Service..."
+echo -e '\nDEVICE_NAME="DashLab"' >>/etc/raspotify/conf
+echo -e 'LIBRESPOT_NAME="DashLab"' >>/etc/raspotify/conf
+service raspotify restart
+exit 0
