@@ -2,6 +2,33 @@ const {spawn} = require("child_process");
 const {shellExec} = require('../../common');
 const fs = require('fs-extra');
 
+const repo = require('./repo/repo.json');
+
+let allApps = [];
+async function initApps() {
+    allApps = await listApps();
+}
+
+const listRepo = async function() {
+
+    repo.forEach((app, index) => {
+        if (app.type !== 'dietpi') return;
+        repo[index].isInstalled = isInstalled(app.id);
+    });
+
+    return repo;
+}
+exports.listRepo = listRepo;
+
+// Returns bool specifying whether supplied software ID is installed
+const isInstalled = function(id) {
+
+    const {isInstalled} = allApps.find(item => item.id === id);
+    return isInstalled;
+
+}
+exports.isInstalled = isInstalled;
+
 // Lists all DietPi optimised software
 // Returns array of JSON objects with metadata for each app
 const listApps = async function() {
