@@ -1,0 +1,84 @@
+[
+    {
+        "name": "RPi-Monitor",
+        "description": "A system stats monitor",
+        "type": "dietpi",
+        "id": "66",
+        "launchUrl": "$HOST:8888",
+        "config": {
+            
+        }
+    },
+    {
+        "name": "Nextcloud",
+        "description": "Self-hosted cloud storage platform",
+        "type": "dietpi",
+        "id": "114",
+        "launchUrl": "$HOST/nextcloud",
+        "config": {
+            
+        }
+    },
+    {
+        "name": "File Browser",
+        "description": "Web-based file manager",
+        "type": "dietpi",
+        "id": "198",
+        "launchUrl": "$HOST:8084",
+        "config": {
+            
+        }
+    },
+    {
+        "name": "Raspotify",
+        "description": "Spotify Connect client",
+        "type": "dietpi",
+        "id": "167",
+        "config": {
+            
+        }
+    },
+    {
+        "name": "Plex Media Server",
+        "description": "Popular media streaming server",
+        "type": "dietpi",
+        "id": "42",
+        "launchUrl": "$HOST:32400/web",
+        "config": {
+            
+        }
+    },
+    {
+        "name": "Vaultwarden",
+        "description": "Bitwarden Password Manager Server",
+        "type": "dietpi",
+        "id": "183",
+        "launchUrl": "$HOST:8001",
+        "postinstallNotice": "You will need a valid SSL certificate to use this server with official Bitwarden clients. You can use the web client with the included self-signed certificate, however you'll get a browser warning each time.",
+        "config": {
+            
+        }
+    },
+    {
+        "name": "UrBackup",
+        "description": "Open source client/server backup system",
+        "type": "dietpi",
+        "id": "111",
+        "launchUrl": "$HOST:55414",
+        "config": {
+            
+        }
+    },
+    {
+        "name": "Wordpress",
+        "description": "Blogging platform",
+        "type": "docker",
+        "compose": "wordpress.yml",
+        "config": {
+            "APP_PORT": "8080",
+            "DB_USER": "wordpress",
+            "DB_PASS": null,
+            "DB_NAME": "wordpress_db"
+        }
+    }
+]
