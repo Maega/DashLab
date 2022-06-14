@@ -2,6 +2,23 @@ const {exec, spawn} = require("child_process");
 const path = require('path');
 const fs = require('fs-extra');
 
+
+const ipc = require('node-ipc').default;
+
+ipc.config.retry = 1500;
+ipc.config.silent = true;
+ipc.connectTo('socket-api', () => {
+    ipc.of['socket-api'].on('connect', () => {
+        console.log('Connected to Socket API!')
+        //ipc.of['socket-api'].emit('terminal', "The message we send");
+    });
+});
+
+//const {emit} = require('./api/console');
+function emit(data) {
+    ipc.of['socket-api'].emit('terminal', data);
+}
+
 exports.config = {
     read: (configName) => {
         const pathToConfig = `${path.resolve(__dirname)}/config/${configName}.config.json`;
@@ -33,14 +50,32 @@ exports.runScript = async function(scriptName, interactive = false) {
 }
 
 // Executes a shell command interactively, does not parse output
-exports.shellExec = async function(shellCmd, shellArgs = []) {
+exports.shellExec = async function(shellCmd, shellArgs = [], busyMsg = "Terminal is busy...") {
 
     const result = await new Promise(async function(resolve, reject) {
 
-        const script = spawn(shellCmd, shellArgs, { stdio: 'inherit' });
+        const script = spawn(shellCmd, shellArgs); //, { stdio: 'inherit' }
+
+        script.stdout.on("data", data => {
+            emit({
+                state: "busy",
+                busyMsg: busyMsg,
+                out: {
+                    raw: data.toString('utf8')
+                }
+            });
+        });
 
         script.on('close', (code) => {
             console.log('Shell process ended with exit code ', code);
+            emit({
+                state: "idle",
+                out: {
+                    raw: code === 0
+                        ? "\n\x1b[1;32mTask completed successfully\x1b[0m"
+                        : "\n\x1b[1;31mTask ended with exit code " + code + "\x1b[0m"
+                }
+            });
             resolve(code);
         });
 

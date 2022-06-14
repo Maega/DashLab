@@ -19,6 +19,7 @@
     },
     "dependencies": {
         "@electron/remote": "^2.0.1",
+        "ansi-to-html": "^0.7.2",
         "axios": "^0.24.0",
         "chalk": "^4.1.2",
         "chalk-pipe": "^5.1.1",
@@ -32,7 +33,9 @@
         "jquery": "^3.6.0",
         "node-cmd": "^5.0.0",
         "node-hue-api": "^5.0.0-beta.10",
+        "node-ipc": "^10.1.0",
         "rpi-wifi-connection": "^1.0.17",
+        "socket.io": "^4.4.1",
         "sweetalert2": "^11.3.4",
         "systeminformation": "^5.9.16"
     }

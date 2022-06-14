@@ -41,7 +41,7 @@ async function main(getSysInfo = true) {
             break;
         case 'update':
             // perform all updates (apt, dietpi, etc..)
-            await shellExec('sudo', ['/boot/dietpi/dietpi-update', '1']);
+            await shellExec('sudo', ['/boot/dietpi/dietpi-update', '1'], 'Updating System...');
             /* await shellExec('sudo', ['./scripts/updateApt.sh']); */
             break;
         case 'backup':

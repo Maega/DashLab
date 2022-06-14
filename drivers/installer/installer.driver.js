@@ -105,14 +105,14 @@ exports.install = async function(appId) {
 
     // Run preinstall script if present
     const preinstall = `/opt/dashlab/drivers/installer/repo/installscripts/${appId}/preinstall`;
-    if (await fs.pathExists(preinstall)) await shellExec('sudo', [preinstall]);
+    if (await fs.pathExists(preinstall)) await shellExec('sudo', [preinstall], 'Preparing to install app...');
 
     // Run installation
-    await shellExec('sudo', ['/opt/dashlab/scripts/installApp.sh', 'install', appId]);
+    await shellExec('sudo', ['/opt/dashlab/scripts/installApp.sh', 'install', appId], 'Installing app, please wait...');
 
     // Run postinstall script if present
     const postinstall = `/opt/dashlab/drivers/installer/repo/installscripts/${appId}/postinstall`;
-    if (await fs.pathExists(postinstall)) await shellExec('sudo', [postinstall]);
+    if (await fs.pathExists(postinstall)) await shellExec('sudo', [postinstall], 'Setting up app...');
 
     // Refresh app list
     await initApps();
@@ -120,7 +120,7 @@ exports.install = async function(appId) {
 }
 
 exports.uninstall = async function(appId) {
-    await shellExec('sudo', ['/opt/dashlab/scripts/installApp.sh', 'uninstall', appId]);
+    await shellExec('sudo', ['/opt/dashlab/scripts/installApp.sh', 'uninstall', appId], 'Uninstalling App...');
     await initApps();
 }
 
